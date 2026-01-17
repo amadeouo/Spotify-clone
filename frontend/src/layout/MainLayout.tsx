@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Group, Panel, Separator } from "react-resizable-panels";
 import { LeftSidebar } from "@/layout/components/LeftSidebar.tsx";
+import { FriendsActivity } from "@/layout/components/FriendsActivity.tsx";
 
 export const MainLayout = () => {
   const isMobile = false
@@ -13,7 +14,7 @@ export const MainLayout = () => {
       >
         {/* left sidebar */}
         <Panel
-          defaultSize='25%'
+          defaultSize='20%'
           minSize={isMobile ? '0%' : '10%'}
           maxSize='30%'
         >
@@ -36,7 +37,7 @@ export const MainLayout = () => {
           minSize='0%'
           maxSize='25%'
         >
-          friends activity
+          <FriendsActivity />
         </Panel>
       </Group>
     </div>

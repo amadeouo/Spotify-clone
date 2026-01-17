@@ -75,8 +75,8 @@ export const LeftSidebar = () => {
                   />
 
                   <div className='flex-1 min-w-0 hidden md:block'>
-                    <p className='text-sm font-medium truncate'>{album.title}</p>
-                    <p className='text-xs text-zinc-400 truncate'>Album • {album.artist}</p>
+                    <p className='text-medium font-medium truncate'>{album.title}</p>
+                    <p className='text-sm text-zinc-400 truncate'>Album • {album.artist}</p>
                   </div>
                 </Link>
               ))
