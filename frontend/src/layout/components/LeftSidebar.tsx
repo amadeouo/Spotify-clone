@@ -9,13 +9,11 @@ import { useMusicStore } from "@/stores/useMusicStore.ts";
 import { useEffect } from "react";
 
 export const LeftSidebar = () => {
-  const {songs, albums, fetchAlbums, isLoading} = useMusicStore()
+  const { albums, fetchAlbums, isLoading } = useMusicStore()
 
   useEffect(() => {
     fetchAlbums()
   }, [fetchAlbums])
-
-  console.log(albums)
 
   // data fetching => zustand
 
@@ -37,7 +35,7 @@ export const LeftSidebar = () => {
 
           <SignedIn>
             <Link
-              to={'/'}
+              to={'/chat'}
               className={cn(buttonVariants({
                 variant: 'ghost',
                 className: 'w-full justify-start text-white hover:bg-zinc-800',
@@ -63,10 +61,25 @@ export const LeftSidebar = () => {
           className='h-[calc(100vh-300px)]'
         >
           <div className='space-y-2'>
-            {isLoading ? (
-              <PlaylistSkeleton />
-            ) : (
-              "some music "
+            {isLoading ? ( <PlaylistSkeleton /> ) : (
+              albums.map((album) => (
+                <Link
+                  to={`album/${album._id}`}
+                  key={album._id}
+                  className='p-2 hover:bg-zinc-800 rounded-md flex items-center gap-3 group: cursor-pointer'
+                >
+                  <img
+                    src={album.imageUrl}
+                    alt='Playlist img'
+                    className='size-10 rounded-md flex-shrink-0 object-cover'
+                  />
+
+                  <div className='flex-1 min-w-0 hidden md:block'>
+                    <p className='text-sm font-medium truncate'>{album.title}</p>
+                    <p className='text-xs text-zinc-400 truncate'>Album • {album.artist}</p>
+                  </div>
+                </Link>
+              ))
             )}
           </div>
         </ScrollArea>
