@@ -1,7 +1,7 @@
 import { useMusicStore } from "@/stores/useMusicStore.ts";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Clock, Play } from "lucide-react";
 import { formatDuration } from "@/lib/formateDuration.ts";
@@ -34,7 +34,7 @@ export const AlbumPage = () => {
              />
              <div className='flex flex-col justify-end'>
                <p className='text-sm'>Album</p>
-               <h1 className='text-5xl font-bold my-4'>{currentAlbum?.title}</h1>
+               <h1 className='text-7xl font-bold my-4'>{currentAlbum?.title}</h1>
                <div className='flex items-center gap-2 text-sm text-zinc-100'>
                  <span className='font-medium text-white'>{currentAlbum?.artist}</span>
                  <span>• {currentAlbum?.songs.length} songs</span>
@@ -54,7 +54,7 @@ export const AlbumPage = () => {
            </div>
 
            {/* Table section */}
-           <div className='bg-black/20 backdrop-blur-sm'>
+           <div className='bg-black/20'>
              {/* table header */}
              <div
                className='grid grid-cols-[16px_4fr_2fr_1fr] gap-4 px-10 py-2 text-sm
