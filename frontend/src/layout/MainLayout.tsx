@@ -13,7 +13,7 @@ export const MainLayout = () => {
       >
         {/* left sidebar */}
         <Panel
-          defaultSize='20%'
+          defaultSize='25%'
           minSize={isMobile ? '0%' : '10%'}
           maxSize='30%'
         >
@@ -28,7 +28,7 @@ export const MainLayout = () => {
           <Outlet />
         </Panel>
 
-        <Separator className='w-2 rounded-lg transition-colors' />
+        <Separator className='w-2 rounded-lg transition-colors outline-0' />
 
         {/* right sidebar*/}
         <Panel
