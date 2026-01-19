@@ -2,9 +2,12 @@ import { Outlet } from "react-router-dom";
 import { Group, Panel, Separator } from "react-resizable-panels";
 import { LeftSidebar } from "@/layout/components/LeftSidebar.tsx";
 import { FriendsActivity } from "@/layout/components/FriendsActivity.tsx";
+import { AudioPlayer } from "@/layout/components/AudioPlayer.tsx";
 
 export const MainLayout = () => {
   const isMobile = false
+
+
 
   return (
     <div className='h-screen bg-black text-white flex flex-col'>
@@ -12,6 +15,7 @@ export const MainLayout = () => {
         orientation='horizontal'
         className='flex-1 flex h-full p-2'
       >
+        <AudioPlayer />
         {/* left sidebar */}
         <Panel
           defaultSize='20%'
