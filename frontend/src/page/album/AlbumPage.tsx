@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Clock, Pause, Play } from "lucide-react";
-import { formatDuration } from "@/lib/formateDuration.ts";
+import { formatDuration } from "@/lib/formatDuration.ts";
 import { usePlayerStore } from "@/stores/usePlayerStore.ts";
 
 export const AlbumPage = () => {
