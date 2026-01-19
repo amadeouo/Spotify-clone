@@ -81,7 +81,7 @@ export const usePlayerStore = create<PlayerStore>((set, get) => ({
     const { currentIndex, queue } = get()
     const prevIndex = currentIndex - 1
 
-    if (prevIndex) {
+    if (prevIndex >= 0) {
       const prevSong = queue[prevIndex]
       set({
         currentSong: prevSong,
