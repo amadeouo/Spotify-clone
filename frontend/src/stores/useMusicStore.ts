@@ -1,23 +1,26 @@
 import { create } from 'zustand'
 import { axiosInstance } from "@/lib/axios.ts";
-import type { Album, Song } from "@/types";
+import type { Album, Song, Stats } from "@/types";
 
 interface MusicStore {
-	songs: Song[];
-	albums: Album[];
-	isLoading: boolean;
-	error: string | null;
-	currentAlbum: Album | null;
-	featuredSongs: Song[];
-	madeForYouSongs: Song[];
+	songs: Song[]
+	albums: Album[]
+	isLoading: boolean
+	error: string | null
+	currentAlbum: Album | null
+	featuredSongs: Song[]
+	madeForYouSongs: Song[]
 	trendingSongs: Song[]
+	stats: Stats
 
 
-	fetchAlbums: () => Promise<void>;
-	fetchAlbumById: (id: string) => Promise<void>;
-	fetchFeaturedSongs: () => Promise<void>;
-	fetchMadeForYouSongs: () => Promise<void>;
-	fetchTrendingSongs: () => Promise<void>;
+	fetchAlbums: () => Promise<void>
+	fetchAlbumById: (id: string) => Promise<void>
+	fetchFeaturedSongs: () => Promise<void>
+	fetchMadeForYouSongs: () => Promise<void>
+	fetchTrendingSongs: () => Promise<void>
+	fetchStats: () => Promise<void>
+	fetchSongs: () => Promise<void>
 }
 
 export const useMusicStore = create<MusicStore>((set) => ({
@@ -29,6 +32,12 @@ export const useMusicStore = create<MusicStore>((set) => ({
 	featuredSongs: [],
 	madeForYouSongs: [],
 	trendingSongs: [],
+	stats: {
+		totalAlbums: 0,
+		totalArtists: 0,
+		totalSongs: 0,
+		totalUsers: 0,
+	},
 
 	fetchAlbums: async () => {
 		set({ isLoading: true, error: null });
@@ -80,6 +89,29 @@ export const useMusicStore = create<MusicStore>((set) => ({
 		try {
 			const response = await axiosInstance.get('songs/trending')
 			set({ trendingSongs: response.data })
+		} catch (error: any) {
+			set({ error: error.response.data.message })
+		} finally {
+			set({ isLoading: false })
+		}
+	},
+
+	fetchStats: async () => {
+		set({ isLoading: true, error: null })
+		try {
+			const response = await axiosInstance.get('/stats')
+			set({ stats: response.data })
+		} catch (error: any) {
+			set({ error: error.response.data.message })
+		} finally {
+			set({ isLoading: false })
+		}
+	},
+	fetchSongs: async () => {
+		set({ isLoading: true, error: null })
+		try {
+			const response = await axiosInstance.get('/songs')
+			set({ songs: response.data })
 		} catch (error: any) {
 			set({ error: error.response.data.message })
 		} finally {
