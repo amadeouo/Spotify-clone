@@ -2,6 +2,7 @@ import type { Song } from "@/types";
 import SectionGridSkeleton
   from "@/page/home/components/SectionGridSkeleton.tsx";
 import { Button } from "@/components/ui/button.tsx";
+import { PlayButton } from "@/page/home/components/PlayButton.tsx";
 
 type Props = {
   title: string;
@@ -38,7 +39,7 @@ export const SectionGrid = ({ title, songs, isLoading }: Props) => {
                   loading="lazy"
                   className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-105'
                 />
-              {/* TODO add play button */}
+              <PlayButton song={song} />
               </div>
             </div>
             <h3 className='font-medium mb-2 truncate'>
