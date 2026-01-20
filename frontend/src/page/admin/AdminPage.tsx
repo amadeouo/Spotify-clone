@@ -1,13 +1,13 @@
 import { useAuthStore } from "@/stores/useAuthStore.ts";
 import { Header } from "@/page/admin/components/Header.tsx";
-import { DashboardStats } from "@/page/admin/components/DashboardStats/DashboardStats.tsx";
+import { DashboardStats } from "@/page/admin/components/DashboardStats.tsx";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger
 } from "@/components/ui/tabs.tsx";
-import { Album, Music } from "lucide-react";
+import { Album, Loader, Music } from "lucide-react";
 import { SongsTabContent } from "@/page/admin/components/SongsTabContent.tsx";
 import { AlbumsTabContent } from "@/page/admin/components/AlbumsTabContent.tsx";
 import { useEffect } from "react";
@@ -23,7 +23,9 @@ export const AdminPage = () => {
     fetchStats()
   }, [fetchAlbums, fetchSongs, fetchStats])
 
-  if(!isAdmin || isLoading) return <div>Unauthorized</div>
+  if (isLoading) return <Loader className='size-8 text-emerald-500 animate-spin'/>
+
+  if(!isAdmin) return <div>Unauthorized</div>
 
   return (
     <div

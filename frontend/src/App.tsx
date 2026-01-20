@@ -6,6 +6,7 @@ import { MainLayout } from "@/layout/MainLayout.tsx";
 import { ChatPage } from "@/page/chat/ChatPage.tsx";
 import { AlbumPage } from "@/page/album/AlbumPage.tsx";
 import { AdminPage } from "@/page/admin/AdminPage.tsx";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -23,8 +24,9 @@ function App() {
           <Route path='/chat' element={<ChatPage />} />
           <Route path='/album/:albumId' element={<AlbumPage />} />
         </Route>
-
       </Routes>
+
+      <Toaster />
     </>
   )
 }
