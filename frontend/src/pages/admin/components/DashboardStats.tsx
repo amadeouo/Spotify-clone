@@ -2,7 +2,7 @@ import { useMusicStore } from "@/stores/useMusicStore.ts";
 import { Library, ListMusic, PlayCircle, Users2 } from "lucide-react";
 import {
   StatsCard
-} from "@/page/admin/components/StatsCard.tsx";
+} from "@/pages/admin/components/StatsCard.tsx";
 
 export const DashboardStats = () => {
   const { stats } = useMusicStore()

@@ -5,8 +5,8 @@ import {
   CardTitle
 } from "@/components/ui/card.tsx";
 import { Music } from "lucide-react";
-import { SongsTable } from "@/page/admin/components/SongsTable.tsx";
-import { AddSongDialog } from "@/page/admin/components/AddSongDialog.tsx";
+import { SongsTable } from "@/pages/admin/components/SongsTable.tsx";
+import { AddSongDialog } from "@/pages/admin/components/AddSongDialog.tsx";
 
 export const SongsTabContent = () => {
   return (

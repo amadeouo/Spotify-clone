@@ -5,8 +5,8 @@ import {
   CardTitle
 } from "@/components/ui/card.tsx";
 import { Library } from "lucide-react";
-import { AddAlbumDialog } from "@/page/admin/components/AddAlbumDialog.tsx";
-import { AlbumsTable } from "@/page/admin/components/AlbumsTable.tsx";
+import { AddAlbumDialog } from "@/pages/admin/components/AddAlbumDialog.tsx";
+import { AlbumsTable } from "@/pages/admin/components/AlbumsTable.tsx";
 
 export const AlbumsTabContent = () => {
   return (

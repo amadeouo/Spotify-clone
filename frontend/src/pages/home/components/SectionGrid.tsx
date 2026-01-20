@@ -1,8 +1,8 @@
 import type { Song } from "@/types";
 import SectionGridSkeleton
-  from "@/page/home/components/SectionGridSkeleton.tsx";
+  from "@/pages/home/components/SectionGridSkeleton.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import { PlayButton } from "@/page/home/components/PlayButton.tsx";
+import { PlayButton } from "@/pages/home/components/PlayButton.tsx";
 
 type Props = {
   title: string;

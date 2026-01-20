@@ -1,9 +1,9 @@
 import { Topbar } from "@/components/Topbar.tsx";
 import { useMusicStore } from "@/stores/useMusicStore.ts";
 import { useEffect } from "react";
-import { FeaturedSection } from "@/page/home/components/FeaturedSection.tsx";
+import { FeaturedSection } from "@/pages/home/components/FeaturedSection.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
-import { SectionGrid } from "@/page/home/components/SectionGrid.tsx";
+import { SectionGrid } from "@/pages/home/components/SectionGrid.tsx";
 import { usePlayerStore } from "@/stores/usePlayerStore.ts";
 
 export const HomePage = () => {

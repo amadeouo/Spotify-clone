@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/stores/useAuthStore.ts";
-import { Header } from "@/page/admin/components/Header.tsx";
-import { DashboardStats } from "@/page/admin/components/DashboardStats.tsx";
+import { Header } from "@/pages/admin/components/Header.tsx";
+import { DashboardStats } from "@/pages/admin/components/DashboardStats.tsx";
 import {
   Tabs,
   TabsContent,
@@ -8,8 +8,8 @@ import {
   TabsTrigger
 } from "@/components/ui/tabs.tsx";
 import { Album, Loader, Music } from "lucide-react";
-import { SongsTabContent } from "@/page/admin/components/SongsTabContent.tsx";
-import { AlbumsTabContent } from "@/page/admin/components/AlbumsTabContent.tsx";
+import { SongsTabContent } from "@/pages/admin/components/SongsTabContent.tsx";
+import { AlbumsTabContent } from "@/pages/admin/components/AlbumsTabContent.tsx";
 import { useEffect } from "react";
 import { useMusicStore } from "@/stores/useMusicStore.ts";
 
