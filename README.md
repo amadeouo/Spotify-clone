@@ -31,7 +31,6 @@
 *   **`src/types/`**: Общие TypeScript-интерфейсы.
 
 ### 🛠 Библиотеки Frontend
-*   **База данных:** MongoDB (Mongoose).
 *   **Стилизация:** shadcn, tailwindcss, lucide-react, Toaster.
 *   **Роутинг:** react-router-dom.
 *   **Состояние:** Zustand.
