@@ -13,8 +13,10 @@ const updateApiToken = (token: string | null) => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const {getToken, userId} = useAuth()
   const [loading, setLoading] = useState(true)
-  const {checkAdminStatus} = useAuthStore()
-  const { initSocket, disconnectSocket } = useChatStore()
+  const checkAdminStatus = useAuthStore(state => state.checkAdminStatus)
+  const initSocket = useChatStore(state => state.initSocket)
+  const disconnectSocket = useChatStore(state => state.disconnectSocket)
+
 
   useEffect(() => {
     const initAuth = async() => {

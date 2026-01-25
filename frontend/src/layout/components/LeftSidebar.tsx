@@ -9,7 +9,9 @@ import { useMusicStore } from "@/stores/useMusicStore.ts";
 import { useEffect } from "react";
 
 export const LeftSidebar = () => {
-  const { albums, fetchAlbums, isLoading } = useMusicStore()
+  const { albums, fetchAlbums, isLoading } = useMusicStore(
+    state => ({ albums: state.albums, isLoading: state.isLoading, fetchAlbums: state.fetchAlbums}),
+  )
 
   useEffect(() => {
     fetchAlbums()

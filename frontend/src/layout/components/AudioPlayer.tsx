@@ -4,7 +4,9 @@ import { usePlayerStore } from "@/stores/usePlayerStore.ts";
 export const AudioPlayer = () => {
   const audioRef = useRef<HTMLAudioElement>(null)
   const prevSongRef = useRef<string | null>(null)
-  const { currentSong, isPlaying, playNext } = usePlayerStore()
+  const currentSong = usePlayerStore(state => state.currentSong)
+  const isPlaying = usePlayerStore(state => state.isPlaying)
+  const playNext = usePlayerStore(state => state.playNext)
 
   // to handle play/pause logic
   useEffect(() => {
