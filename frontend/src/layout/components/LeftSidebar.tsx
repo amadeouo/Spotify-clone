@@ -7,10 +7,13 @@ import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import PlaylistSkeleton from "@/components/skeletons/PlaylistSkeleton.tsx";
 import { useMusicStore } from "@/stores/useMusicStore.ts";
 import { useEffect } from "react";
+import { useShallow } from "zustand/react/shallow";
 
 export const LeftSidebar = () => {
   const { albums, fetchAlbums, isLoading } = useMusicStore(
-    state => ({ albums: state.albums, isLoading: state.isLoading, fetchAlbums: state.fetchAlbums}),
+    useShallow(state => ({
+      albums: state.albums, isLoading: state.isLoading, fetchAlbums: state.fetchAlbums
+    }))
   )
 
   useEffect(() => {
