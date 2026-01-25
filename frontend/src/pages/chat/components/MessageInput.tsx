@@ -4,11 +4,15 @@ import { useChatStore } from "@/stores/useChatStore.ts";
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Send } from "lucide-react";
+import { useShallow } from "zustand/react/shallow";
 
 export const MessageInput = () => {
   const [newMessage, setNewMessage] = useState<string>('')
   const { user } = useUser()
-  const { selectedUser, sendMessage } = useChatStore()
+  const { selectedUser, sendMessage } = useChatStore(useShallow((state) => ({
+    selectedUser: state.selectedUser,
+    sendMessage: state.sendMessage,
+  })))
 
   const handleSend = () => {
     if (!selectedUser || !user || !newMessage) return

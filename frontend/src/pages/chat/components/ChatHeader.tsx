@@ -1,9 +1,13 @@
 import { useChatStore } from "@/stores/useChatStore.ts";
 import { Avatar, AvatarImage } from "@/components/ui/avatar.tsx";
 import { AvatarFallback } from "@radix-ui/react-avatar";
+import { useShallow } from "zustand/react/shallow";
 
 export const ChatHeader = () => {
-  const {selectedUser, onlineUsers} = useChatStore()
+  const {selectedUser, onlineUsers} = useChatStore(useShallow((state) => ({
+    selectedUser: state.selectedUser,
+    onlineUsers: state.onlineUsers,
+  })))
 
   if (!selectedUser) return null;
 

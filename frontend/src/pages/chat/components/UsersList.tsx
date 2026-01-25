@@ -2,9 +2,16 @@ import UsersListSkeleton from "@/components/skeletons/UsersListSkeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useChatStore } from "@/stores/useChatStore";
+import { useShallow } from "zustand/react/shallow";
 
 const UsersList = () => {
-  const { users, selectedUser, isLoading, setSelectedUser, onlineUsers } = useChatStore();
+  const { users, selectedUser, isLoading, setSelectedUser, onlineUsers } = useChatStore(useShallow((state) => ({
+    users: state.users,
+    selectedUser: state.selectedUser,
+    isLoading: state.isLoading,
+    setSelectedUser: state.setSelectedUser,
+    onlineUsers: state.onlineUsers,
+  })));
 
   return (
     <div className='border-r border-zinc-800'>

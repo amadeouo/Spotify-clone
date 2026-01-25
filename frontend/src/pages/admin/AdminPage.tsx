@@ -12,10 +12,18 @@ import { SongsTabContent } from "@/pages/admin/components/SongsTabContent.tsx";
 import { AlbumsTabContent } from "@/pages/admin/components/AlbumsTabContent.tsx";
 import { useEffect } from "react";
 import { useMusicStore } from "@/stores/useMusicStore.ts";
+import { useShallow } from "zustand/react/shallow";
 
 export const AdminPage = () => {
-  const { isAdmin, isLoading } = useAuthStore()
-  const { fetchAlbums, fetchSongs, fetchStats } = useMusicStore()
+  const { isAdmin, isLoading } = useAuthStore(useShallow((state) => ({
+    isAdmin: state.isAdmin,
+    isLoading: state.isLoading,
+  })))
+  const { fetchAlbums, fetchSongs, fetchStats } = useMusicStore(useShallow((state) => ({
+    fetchAlbums: state.fetchAlbums,
+    fetchSongs: state.fetchSongs,
+    fetchStats: state.fetchStats,
+  })))
 
   useEffect(() => {
     fetchAlbums()

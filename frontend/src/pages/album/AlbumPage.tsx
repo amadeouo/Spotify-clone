@@ -6,12 +6,22 @@ import { Button } from "@/components/ui/button.tsx";
 import { Clock, Pause, Play } from "lucide-react";
 import { formatDuration } from "@/lib/formatDuration.ts";
 import { usePlayerStore } from "@/stores/usePlayerStore.ts";
+import { useShallow } from "zustand/react/shallow";
 
 export const AlbumPage = () => {
-  const {fetchAlbumById, currentAlbum, isLoading} = useMusicStore()
+  const {fetchAlbumById, currentAlbum, isLoading} = useMusicStore(useShallow((state) => ({
+    fetchAlbumById: state.fetchAlbumById,
+    currentAlbum: state.currentAlbum,
+    isLoading: state.isLoading
+  })))
   const { albumId } = useParams()
 
-  const { currentSong, isPlaying, playAlbum, togglePlay } = usePlayerStore()
+  const { currentSong, isPlaying, playAlbum, togglePlay } = usePlayerStore(useShallow((state) => ({
+    currentSong: state.currentSong,
+    isPlaying: state.isPlaying,
+    playAlbum: state.playAlbum,
+    togglePlay: state.togglePlay
+  })))
 
   useEffect(() => {
     if (albumId) fetchAlbumById(albumId)

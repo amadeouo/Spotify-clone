@@ -7,9 +7,15 @@ import {
 } from "@/components/ui/table.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { Calendar, Trash2 } from "lucide-react";
+import { useShallow } from "zustand/react/shallow";
 
 export const SongsTable = () => {
-  const { songs, isLoading, error, deleteSong } = useMusicStore()
+  const { songs, isLoading, error, deleteSong } = useMusicStore(useShallow((state) => ({
+    songs: state.songs,
+    isLoading: state.isLoading,
+    error: state.error,
+    deleteSong: state.deleteSong,
+  })))
 
   if (isLoading) {
     return (

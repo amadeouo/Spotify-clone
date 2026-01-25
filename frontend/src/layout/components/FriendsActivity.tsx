@@ -4,16 +4,18 @@ import { HeadphonesIcon, Music, Users } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar.tsx"
-import { shallow } from "zustand/vanilla/shallow";
+import { useShallow } from "zustand/react/shallow";
 
 export const FriendsActivity = () => {
   const users = useChatStore((state) => state.users)
 
-  const { onlineUsers, userActivities, fetchUsers } = useChatStore(({ onlineUsers, userActivities, fetchUsers }) => ({
-    onlineUsers: onlineUsers,
-    userActivities: userActivities,
-    fetchUsers: fetchUsers,
-  }), shallow)
+  const { onlineUsers, userActivities, fetchUsers } = useChatStore(
+    useShallow((state) => ({
+      onlineUsers: state.onlineUsers,
+      userActivities: state.userActivities,
+      fetchUsers: state.fetchUsers,
+    }))
+  )
 
   const { user } = useUser()
 

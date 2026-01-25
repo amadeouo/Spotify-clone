@@ -2,6 +2,7 @@ import type { Song } from "@/types";
 import { usePlayerStore } from "@/stores/usePlayerStore.ts";
 import { Button } from "@/components/ui/button.tsx";
 import { Pause, Play } from "lucide-react";
+import { useShallow } from "zustand/react/shallow";
 
 type Props = {
   song: Song
@@ -12,7 +13,12 @@ export const PlayButton = ({ song }: Props) => {
     isPlaying,
     setCurrentSong,
     togglePlay
-  } = usePlayerStore()
+  } = usePlayerStore(useShallow((state) => ({
+    currentSong: state.currentSong,
+    isPlaying: state.isPlaying,
+    setCurrentSong: state.setCurrentSong,
+    togglePlay: state.togglePlay
+  })))
   const isCurrentSong = currentSong?._id === song._id
 
   const handlePlay = () => {

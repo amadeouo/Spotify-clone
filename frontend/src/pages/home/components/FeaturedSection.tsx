@@ -2,9 +2,14 @@ import { useMusicStore } from "@/stores/useMusicStore.ts";
 import FeaturedGridSkeleton
   from "@/components/skeletons/FeaturedGridSkeleton.tsx";
 import { PlayButton } from "@/pages/home/components/PlayButton.tsx";
+import { useShallow } from "zustand/react/shallow";
 
 export const FeaturedSection = () => {
-  const {isLoading, featuredSongs, error} = useMusicStore()
+  const {isLoading, featuredSongs, error} = useMusicStore(useShallow((state) => ({
+    isLoading: state.isLoading,
+    featuredSongs: state.featuredSongs,
+    error: state.error,
+  })))
 
   if (isLoading) return <FeaturedGridSkeleton />
 

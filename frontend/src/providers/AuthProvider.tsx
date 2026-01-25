@@ -4,6 +4,7 @@ import { axiosInstance } from "@/lib/axios.ts";
 import { Loader } from "lucide-react";
 import { useAuthStore } from "@/stores/useAuthStore.ts";
 import { useChatStore } from "@/stores/useChatStore.ts";
+import { useShallow } from "zustand/react/shallow";
 
 const updateApiToken = (token: string | null) => {
   if (token) axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`
@@ -14,9 +15,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const {getToken, userId} = useAuth()
   const [loading, setLoading] = useState(true)
   const checkAdminStatus = useAuthStore(state => state.checkAdminStatus)
-  const initSocket = useChatStore(state => state.initSocket)
-  const disconnectSocket = useChatStore(state => state.disconnectSocket)
 
+  const { initSocket, disconnectSocket} = useChatStore(
+    useShallow((state) => ({
+      initSocket: state.initSocket,
+      disconnectSocket: state.disconnectSocket
+    }))
+  )
 
   useEffect(() => {
     const initAuth = async() => {

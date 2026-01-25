@@ -5,7 +5,7 @@ import {
 } from "@/pages/admin/components/StatsCard.tsx";
 
 export const DashboardStats = () => {
-  const { stats } = useMusicStore()
+  const stats = useMusicStore(state => state.stats)
 
   const statsData = [
     {

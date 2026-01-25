@@ -11,10 +11,16 @@ import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { Avatar, AvatarImage } from "@/components/ui/avatar.tsx";
 import { MessageInput } from "@/pages/chat/components/MessageInput.tsx";
 import { formatTimeMessage } from "@/lib/formatTimeMessage.ts";
+import { useShallow } from "zustand/react/shallow";
 
 export const ChatPage = () => {
   const { user } = useUser()
-  const { messages, selectedUser, fetchUsers, fetchMessages } = useChatStore()
+  const { messages, selectedUser, fetchUsers, fetchMessages } = useChatStore(useShallow((state) => ({
+    messages: state.messages,
+    selectedUser: state.selectedUser,
+    fetchUsers: state.fetchUsers,
+    fetchMessages: state.fetchMessages,
+  })))
 
   useEffect(() => {
     if (user) fetchUsers()

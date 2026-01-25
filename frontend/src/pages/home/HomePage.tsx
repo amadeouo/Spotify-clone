@@ -5,6 +5,7 @@ import { FeaturedSection } from "@/pages/home/components/FeaturedSection.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { SectionGrid } from "@/pages/home/components/SectionGrid.tsx";
 import { usePlayerStore } from "@/stores/usePlayerStore.ts";
+import { useShallow } from "zustand/react/shallow";
 
 export const HomePage = () => {
   const {
@@ -15,9 +16,17 @@ export const HomePage = () => {
     trendingSongs,
     madeForYouSongs,
     isLoading,
-  } = useMusicStore()
+  } = useMusicStore(useShallow((state) => ({
+    fetchFeaturedSongs: state.fetchFeaturedSongs,
+    fetchTrendingSongs: state.fetchTrendingSongs,
+    fetchMadeForYouSongs: state.fetchMadeForYouSongs,
+    featuredSongs: state.featuredSongs,
+    trendingSongs: state.trendingSongs,
+    madeForYouSongs: state.madeForYouSongs,
+    isLoading: state.isLoading,
+  })))
 
-  const { initQueue } = usePlayerStore()
+  const initQueue = usePlayerStore(state => state.initQueue)
 
   useEffect(() => {
     fetchFeaturedSongs()

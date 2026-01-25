@@ -8,9 +8,14 @@ import {
 } from "@/components/ui/table.tsx";
 import { Calendar, Music, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
+import { useShallow } from "zustand/react/shallow";
 
 export const AlbumsTable = () => {
-  const { albums, deleteAlbum, fetchAlbums } = useMusicStore()
+  const { albums, deleteAlbum, fetchAlbums } = useMusicStore(useShallow((state) => ({
+    albums: state.albums,
+    deleteAlbum: state.deleteAlbum,
+    fetchAlbums: state.fetchAlbums,
+  })))
 
   useEffect(() => {
     fetchAlbums()
