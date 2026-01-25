@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils.ts";
 import { buttonVariants } from "@/components/ui/button.tsx";
 
 export const Topbar = () => {
-  const { isAdmin } = useAuthStore()
+  const isAdmin = useAuthStore(state => state.isAdmin)
 
   return (
     <div
